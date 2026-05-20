@@ -63,7 +63,7 @@ const Navbar = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden items-center gap-3 lg:flex">
-          <Link href="/signin">
+          <Link href="/login">
             <Button
               variant="bordered"
               className="border-slate-300 px-5 text-slate-700"

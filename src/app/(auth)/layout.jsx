@@ -1,6 +1,6 @@
 import Navbar from "@/components/shared/navbar/NavBar";
 
-const AuthLayout = ({ children }) => {
+const layout = ({ children }) => {
   return (
     <>
       <Navbar />
@@ -9,4 +9,4 @@ const AuthLayout = ({ children }) => {
   );
 };
 
-export default AuthLayout;
+export default layout;

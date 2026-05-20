@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
-const SignUpPage = () => {
+const LoginPage = () => {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-4 py-10">
       {/* Background Blur */}
@@ -25,29 +25,17 @@ const SignUpPage = () => {
         {/* Header */}
         <div className="text-center">
           <h1 className="mt-6 text-4xl font-black tracking-tight text-slate-900">
-            Create Account
+            Welcome Back
           </h1>
 
           <p className="mt-3 text-sm leading-7 text-slate-500">
-            Join Tutorly and start learning with expert tutors from anywhere.
+            Sign in to continue learning with Tutorly and connect with expert
+            tutors.
           </p>
         </div>
 
         {/* Form */}
         <Form className="mt-8 flex flex-col gap-5">
-          <TextField isRequired name="name" type="text" className="w-full">
-            <Label className="mb-2 text-sm font-semibold text-slate-700">
-              Full Name
-            </Label>
-
-            <Input
-              placeholder="Enter your full name"
-              className="w-full rounded-2xl border border-slate-200 bg-white text-slate-700"
-            />
-
-            <FieldError />
-          </TextField>
-
           <TextField isRequired name="email" type="email" className="w-full">
             <Label className="mb-2 text-sm font-semibold text-slate-700">
               Email Address
@@ -55,19 +43,6 @@ const SignUpPage = () => {
 
             <Input
               placeholder="Enter your email address"
-              className="w-full rounded-2xl border border-slate-200 bg-white text-slate-700"
-            />
-
-            <FieldError />
-          </TextField>
-
-          <TextField isRequired name="photo" type="url" className="w-full">
-            <Label className="mb-2 text-sm font-semibold text-slate-700">
-              Photo URL
-            </Label>
-
-            <Input
-              placeholder="https://example.com/photo.jpg"
               className="w-full rounded-2xl border border-slate-200 bg-white text-slate-700"
             />
 
@@ -85,18 +60,35 @@ const SignUpPage = () => {
             </Label>
 
             <Input
-              placeholder="Create a strong password"
+              placeholder="Enter your password"
               className="w-full rounded-2xl border border-slate-200 bg-white text-slate-700"
             />
 
             <FieldError />
           </TextField>
 
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex cursor-pointer items-center gap-2 text-slate-500">
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded accent-emerald-500"
+              />
+              Remember me
+            </label>
+
+            <Link
+              href=""
+              className="font-medium text-emerald-600 hover:underline"
+            >
+              Forgot Password?
+            </Link>
+          </div>
+
           <Button
             type="submit"
             className="mt-2 h-13 w-full rounded-2xl bg-emerald-500 text-sm font-semibold text-white shadow-lg shadow-emerald-200 transition-all hover:bg-emerald-600"
           >
-            Register Now
+            Sign In
             <FaArrowRight />
           </Button>
         </Form>
@@ -119,13 +111,13 @@ const SignUpPage = () => {
         </Button>
 
         {/* Footer */}
-        <p className="mt-4 text-center text-sm text-slate-500">
-          Already have an account?{" "}
+        <p className="mt-8 text-center text-sm text-slate-500">
+          Don&apos;t have an account?{" "}
           <Link
-            href="/login"
+            href="/signup"
             className="font-semibold text-emerald-600 hover:underline"
           >
-            Sign In
+            Create Account
           </Link>
         </p>
       </Card>
@@ -133,4 +125,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default LoginPage;

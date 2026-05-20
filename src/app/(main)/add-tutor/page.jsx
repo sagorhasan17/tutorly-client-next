@@ -1,6 +1,7 @@
 "use client";
 
 import GlobalLoading from "@/components/shared/GlobalLoading";
+import Link from "next/link";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -394,12 +395,11 @@ const AddTutorPage = () => {
 
             {/* Buttons */}
             <div className="flex flex-col-reverse gap-4 pt-4 sm:flex-row sm:justify-end lg:col-span-2">
-              <button
-                type="button"
-                className="h-12 cursor-pointer rounded-2xl border border-red-200 px-8 text-sm font-medium text-red-500 transition-all hover:bg-red-50"
-              >
-                Cancel
-              </button>
+              <Link href="/">
+                <button className="h-12 cursor-pointer rounded-2xl border border-slate-200 px-8 text-sm font-semibold text-slate-700 transition-all hover:bg-slate-100">
+                  Cancel
+                </button>
+              </Link>
 
               <button
                 type="submit"
