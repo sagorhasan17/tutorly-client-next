@@ -8,9 +8,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import FirstBanner from "./banners/FirstBanner";
-import SecondBanner from "./banners/SecondBanner";
-import ThirdBanner from "./banners/ThirdBanner";
+import FirstBanner from "./sections/banners/FirstBanner";
+import SecondBanner from "./sections/banners/SecondBanner";
+import ThirdBanner from "./sections/banners/ThirdBanner";
 
 const SwiperSliderBanner = () => {
   return (
