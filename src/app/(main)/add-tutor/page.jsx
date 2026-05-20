@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const availableDays = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
@@ -13,30 +14,46 @@ const AddTutorPage = () => {
     e.preventDefault();
     setLoading(true);
 
+    // const formData = new FormData(e.currentTarget);
+    // const tutorData = {
+    //   tutorName: formData.get("tutorName"),
+    //   photo: formData.get("photo"),
+    //   subject: formData.get("subject"),
+    //   teachingMode: formData.get("teachingMode"),
+    //   availableDays: formData.getAll("availableDays"),
+    //   startTime: formData.get("startTime"),
+    //   endTime: formData.get("endTime"),
+    //   hourlyFee: formData.get("hourlyFee"),
+    //   totalSlots: formData.get("totalSlots"),
+    //   sessionStartDate: startDate.toISOString(),
+    //   institution: formData.get("institution"),
+    //   experience: formData.get("experience"),
+    //   area: formData.get("area"),
+    //   city: formData.get("city"),
+    //   contact: formData.get("contact"),
+    //   qualification: formData.get("qualification"),
+    //   bio: formData.get("bio"),
+    // };
+    
     const formData = new FormData(e.currentTarget);
+    const tutorData = Object.fromEntries(formData.entries());
 
-    const tutorData = {
-      tutorName: formData.get("tutorName"),
-      photo: formData.get("photo"),
-      subject: formData.get("subject"),
-      teachingMode: formData.get("teachingMode"),
-      availableDays: formData.getAll("availableDays"),
-      startTime: formData.get("startTime"),
-      endTime: formData.get("endTime"),
-      hourlyFee: formData.get("hourlyFee"),
-      totalSlots: formData.get("totalSlots"),
-      sessionStartDate: startDate.toISOString(),
-      experience: formData.get("experience"),
-      area: formData.get("area"),
-      city: formData.get("city"),
-      contact: formData.get("contact"),
-      qualification: formData.get("qualification"),
-      bio: formData.get("bio"),
-    };
-
-    console.log(tutorData);
-
-    setLoading(false);
+    const res = await fetch("http://localhost:8000/teachers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(tutorData),
+    });
+    if (!res.ok) {
+      console.error("Failed to add tutor");
+      setLoading(false);
+      return;
+    } else {
+      console.log("Tutor added successfully");
+      console.log(tutorData);
+      setLoading(false);
+    }
   };
 
   return (
@@ -48,7 +65,7 @@ const AddTutorPage = () => {
           </span>
 
           <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-900 md:text-5xl">
-            Add New Tutor
+            Add a New Tutor
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-500">
@@ -57,6 +74,7 @@ const AddTutorPage = () => {
           </p>
         </div>
 
+        {/*full Form */}
         <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-100">
           <div className="h-1.5 w-full bg-linear-to-r from-emerald-400 via-emerald-500 to-green-400" />
 
@@ -156,7 +174,7 @@ const AddTutorPage = () => {
                 </span>
               </div>
 
-              {/* Available Days */}
+              {/* Days */}
               <div className="mt-6">
                 <label className="mb-3 block text-sm font-semibold text-slate-700">
                   Available Days
@@ -257,16 +275,31 @@ const AddTutorPage = () => {
               />
             </div>
 
+            {/* Institution */}
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-slate-700">
+                Institution
+              </label>
+
+              <input
+                type="text"
+                name="institution"
+                placeholder="Dhaka University"
+                required
+                className="h-13 w-full rounded-2xl border border-slate-200 bg-white px-5 text-sm outline-none transition-all focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
+              />
+            </div>
+
             {/* Experience */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-slate-700">
-                Institution & Experience
+                Experience
               </label>
 
               <input
                 type="text"
                 name="experience"
-                placeholder="Dhaka University • 5 Years Experience"
+                placeholder="5 Years Experience"
                 required
                 className="h-13 w-full rounded-2xl border border-slate-200 bg-white px-5 text-sm outline-none transition-all focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
               />
@@ -358,7 +391,7 @@ const AddTutorPage = () => {
             <div className="flex flex-col-reverse gap-4 pt-4 sm:flex-row sm:justify-end lg:col-span-2">
               <button
                 type="button"
-                className="h-12 rounded-2xl border border-red-200 px-8 text-sm font-medium text-red-500 transition-all hover:bg-red-50 cursor-pointer"
+                className="h-12 cursor-pointer rounded-2xl border border-red-200 px-8 text-sm font-medium text-red-500 transition-all hover:bg-red-50"
               >
                 Cancel
               </button>
@@ -366,7 +399,7 @@ const AddTutorPage = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="h-12 rounded-2xl bg-emerald-500 px-8 text-sm font-semibold text-white shadow-lg shadow-emerald-200 transition-all hover:bg-emerald-600 disabled:cursor-not-allowed disabled:bg-emerald-300 cursor-pointer"
+                className="h-12 cursor-pointer rounded-2xl bg-emerald-500 px-8 text-sm font-semibold text-white shadow-lg shadow-emerald-200 transition-all hover:bg-emerald-600 disabled:cursor-not-allowed disabled:bg-emerald-300"
               >
                 {loading ? "Adding Tutor..." : "Add Tutor"}
               </button>
