@@ -59,7 +59,7 @@ const TutorCard = ({ tutor }) => {
             </h5>
           </div>
 
-          <Link href={`/tutors/${tutor._id}`}>
+          <Link href={`/teachers/${tutor._id}`}>
             <Button className="rounded-xl bg-emerald-500 text-sm font-semibold text-white hover:bg-emerald-600">
               Book Now
             </Button>
