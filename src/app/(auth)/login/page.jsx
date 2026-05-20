@@ -1,6 +1,7 @@
 "use client";
 
 import GoogleSVG from "@/components/GoogleSVG";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Card,
@@ -12,8 +13,32 @@ import {
 } from "@heroui/react";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(formData.entries());
+    const { email, password } = userData;
+    const { data, error } = await authClient.signIn.email({
+      email: email, // required
+      password: password, // required
+      rememberMe: true,
+      callbackURL: "/",
+    });
+    if (!error) {
+      toast.success("Login successful!", {
+        autoClose: 2000,
+        position: "top-center",
+      });
+    } else {
+      toast.error("Login error:", {
+        autoClose: 2000,
+        position: "top-center",
+      });
+    }
+  };
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-4 py-10">
       {/* Background Blur */}
@@ -35,7 +60,7 @@ const LoginPage = () => {
         </div>
 
         {/* Form */}
-        <Form className="mt-8 flex flex-col gap-5">
+        <Form onSubmit={onSubmit} className="mt-8 flex flex-col gap-5">
           <TextField isRequired name="email" type="email" className="w-full">
             <Label className="mb-2 text-sm font-semibold text-slate-700">
               Email Address

@@ -1,6 +1,7 @@
 "use client";
 
-import { Button } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -37,6 +38,11 @@ const navBarLinks = (
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const userInfo = authClient.useSession();
+  const user = userInfo.data?.user;
+  const handleLogout = async () => {
+    await authClient.signOut();
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-xl">
@@ -63,20 +69,42 @@ const Navbar = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden items-center gap-3 lg:flex">
-          <Link href="/login">
-            <Button
-              variant="bordered"
-              className="border-slate-300 px-5 text-slate-700"
-            >
-              Sign In
-            </Button>
-          </Link>
+          {user ? (
+            <div className="flex items-center gap-3">
+              <Avatar className="size-14 border-2 border-emerald-500">
+                <Avatar.Image
+                  alt={user?.name}
+                  src={user?.image}
+                  className="h-20 w-20"
+                />
+                <Avatar.Fallback>{user.name?.charAt(0) || "U"}</Avatar.Fallback>
+              </Avatar>
+              <Button
+                onClick={handleLogout}
+                variant="solid"
+                className="bg-red-500 text-white py-6 px-6"
+              >
+                LogOut
+              </Button>
+            </div>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button
+                  variant="bordered"
+                  className="border-slate-300 text-slate-700"
+                >
+                  Sign In
+                </Button>
+              </Link>
 
-          <Link href="/signup">
-            <Button className="bg-emerald-500 px-5 text-white hover:bg-emerald-600">
-              Get Started
-            </Button>
-          </Link>
+              <Link href="/signup">
+                <Button variant="solid" className="bg-emerald-500 text-white">
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -97,20 +125,47 @@ const Navbar = () => {
 
             {/* Mobile Buttons */}
             <div className="mt-6 flex flex-col gap-3">
-              <Link href="/signin">
-                <Button
-                  variant="bordered"
-                  className="w-full border-slate-300 text-slate-700"
-                >
-                  Sign In
-                </Button>
-              </Link>
+              {user ? (
+                <div className="flex items-center gap-3">
+                  <Avatar className="size-14 border-2 border-emerald-500">
+                    <Avatar.Image
+                      alt={user?.name}
+                      src={user?.image}
+                      className="h-20 w-20"
+                    />
+                    <Avatar.Fallback>
+                      {user.name?.charAt(0) || "U"}
+                    </Avatar.Fallback>
+                  </Avatar>
+                  <Button
+                    onClick={handleLogout}
+                    variant="solid"
+                    className="bg-red-500 text-white py-6 px-6"
+                  >
+                    LogOut
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <Link href="/login">
+                    <Button
+                      variant="bordered"
+                      className="border-slate-300 text-slate-700"
+                    >
+                      Sign In
+                    </Button>
+                  </Link>
 
-              <Link href="/signup">
-                <Button className="w-full bg-emerald-500 text-white hover:bg-emerald-600">
-                  Get Started
-                </Button>
-              </Link>
+                  <Link href="/signup">
+                    <Button
+                      variant="solid"
+                      className="bg-emerald-500 text-white"
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Small Info Card */}

@@ -1,6 +1,7 @@
 "use client";
 
 import GoogleSVG from "@/components/GoogleSVG";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Card,
@@ -11,9 +12,39 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const userFormData = Object.fromEntries(formData.entries());
+    const { name, email, password, photo } = userFormData;
+    const { data, error } = await authClient.signUp.email({
+      name: name,
+      email: email, // required
+      password: password,
+      image: photo,
+    });
+    if (!error) {
+      toast.success("Registration successful!", {
+        autoClose: 2000,
+        position: "top-center",
+      });
+      await authClient.signOut();
+      router.push("/login");
+    } else {
+      toast.error("Registration error:", {
+        autoClose: 2000,
+        position: "top-center",
+      });
+    }
+  };
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-4 py-10">
       {/* Background Blur */}
@@ -34,7 +65,7 @@ const SignUpPage = () => {
         </div>
 
         {/* Form */}
-        <Form className="mt-8 flex flex-col gap-5">
+        <Form className="mt-8 flex flex-col gap-5" onSubmit={onSubmit}>
           <TextField isRequired name="name" type="text" className="w-full">
             <Label className="mb-2 text-sm font-semibold text-slate-700">
               Full Name
@@ -96,7 +127,7 @@ const SignUpPage = () => {
             type="submit"
             className="mt-2 h-13 w-full rounded-2xl bg-emerald-500 text-sm font-semibold text-white shadow-lg shadow-emerald-200 transition-all hover:bg-emerald-600"
           >
-            Register Now
+            {loading ? "Signing Up..." : "Sign Up"}
             <FaArrowRight />
           </Button>
         </Form>
