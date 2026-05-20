@@ -1,5 +1,5 @@
 
-import AllTutors from "@/components/all-tutors/AllTutors";
+import PopularTutors from "@/components/all-tutors/PopularTutors";
 import CTABanner from "@/components/sections/cta/CTABanner";
 import WhyChooseTutorly from "@/components/sections/qhyChoose/WhyChooseTutorly";
 import Testimonials from "@/components/sections/testimonials/Testimonials";
@@ -12,7 +12,7 @@ export default function Home() {
     <div>
       <SwiperSliderBanner />
     </div>
-    <AllTutors />
+    <PopularTutors />
     <WhyChooseTutorly />
     <Testimonials />
     <CTABanner />

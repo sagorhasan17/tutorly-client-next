@@ -31,7 +31,7 @@ const navBarLinks = (
     </li>
 
     <li>
-      <NavLink href="/about">About</NavLink>
+      <NavLink href="/profile">Profile</NavLink>
     </li>
   </>
 );

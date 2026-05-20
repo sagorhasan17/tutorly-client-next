@@ -12,6 +12,11 @@ import {
   FaVideo,
 } from "react-icons/fa";
 
+export const metadata = {
+  title: "Teacher Details",
+  description:
+    "Teacher details page of Tutorly. Tutorly helps students connect with expert mentors and enjoy a flexible, modern learning experience.",
+};
 const TeacherDetailsPage = async ({ params }) => {
   const { id } = await params;
   const tutor = await getSingleTutor(id);

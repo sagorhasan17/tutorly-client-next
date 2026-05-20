@@ -12,6 +12,20 @@ export const getAllTutors = async () => {
     return [];
   }
 };
+export const getPopularTutors = async () => {
+  try {
+    const res = await fetch("http://localhost:8000/teachers/popular");
+    if (!res.ok) {
+      throw new Error("Failed to fetch tutors");
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+
+    return [];
+  }
+};
 
 //get a single tutor by id
 export const getSingleTutor = async (id) => {

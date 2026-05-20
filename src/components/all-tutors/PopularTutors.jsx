@@ -1,12 +1,8 @@
-import { getAllTutors } from "@/lib/fetchData";
+import { getPopularTutors } from "@/lib/fetchData";
 import TutorCard from "../TutorCard";
 
 const PopularTutors = async () => {
-  const allTutorsRes = await getAllTutors();
-
-  const popularTutors = allTutorsRes
-    .filter((tutor) => tutor.rating >= 4.8)
-    .slice(0, 8);
+  const allTutorsRes = await getPopularTutors();
 
   return (
     <section className="py-6">
@@ -29,7 +25,7 @@ const PopularTutors = async () => {
 
         {/* Tutors Grid */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
-          {popularTutors.map((tutor) => (
+          {allTutorsRes.map((tutor) => (
             <TutorCard key={tutor._id} tutor={tutor} />
           ))}
         </div>
