@@ -16,7 +16,7 @@ const CTABanner = () => {
               Start Your Learning Journey
             </span>
 
-            <h2 className="mt-6 max-w-3xl text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl">
+            <h2 className="mt-6 max-w-3xl text-2xl md:text-5xl font-black leading-tight tracking-tight text-white sm:text-5xl">
               Find The Perfect Teacher And Start Learning Today
             </h2>
 

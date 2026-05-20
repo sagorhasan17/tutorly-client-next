@@ -22,11 +22,11 @@ const navBarLinks = (
     </li>
 
     <li>
-      <NavLink href="/classes">Classes</NavLink>
+      <NavLink href="/add-tutor">Add a tutor</NavLink>
     </li>
 
     <li>
-      <NavLink href="/bookings">Bookings</NavLink>
+      <NavLink href="/my-bookings">Bookings</NavLink>
     </li>
 
     <li>
