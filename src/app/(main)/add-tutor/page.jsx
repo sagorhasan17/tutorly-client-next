@@ -1,8 +1,10 @@
 "use client";
 
+import GlobalLoading from "@/components/shared/GlobalLoading";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { toast } from "react-toastify";
 
 const availableDays = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
@@ -34,7 +36,7 @@ const AddTutorPage = () => {
     //   qualification: formData.get("qualification"),
     //   bio: formData.get("bio"),
     // };
-    
+
     const formData = new FormData(e.currentTarget);
     const tutorData = Object.fromEntries(formData.entries());
 
@@ -46,10 +48,13 @@ const AddTutorPage = () => {
       body: JSON.stringify(tutorData),
     });
     if (!res.ok) {
-      console.error("Failed to add tutor");
+      toast.error("Failed to add tutor. Please try again.", {
+        autoClose: 3000,
+      });
       setLoading(false);
       return;
     } else {
+      toast.success("Tutor added successfully!", { autoClose: 3000 });
       console.log("Tutor added successfully");
       console.log(tutorData);
       setLoading(false);
@@ -407,6 +412,7 @@ const AddTutorPage = () => {
           </form>
         </div>
       </div>
+      {loading && <GlobalLoading />}
     </section>
   );
 };
