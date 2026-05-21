@@ -12,30 +12,6 @@ import {
 } from "react-icons/fa";
 import NavLink from "./NavLink";
 
-const navBarLinks = (
-  <>
-    <li>
-      <NavLink href="/">Home</NavLink>
-    </li>
-
-    <li>
-      <NavLink href="/teachers">Teachers</NavLink>
-    </li>
-
-    <li>
-      <NavLink href="/add-tutor">Add a tutor</NavLink>
-    </li>
-
-    <li>
-      <NavLink href="/my-bookings">Bookings</NavLink>
-    </li>
-
-    <li>
-      <NavLink href="/profile">Profile</NavLink>
-    </li>
-  </>
-);
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const userInfo = authClient.useSession();
@@ -43,6 +19,40 @@ const Navbar = () => {
   const handleLogout = async () => {
     await authClient.signOut();
   };
+  const navBarLinks = (
+    <>
+      <li>
+        <NavLink href="/">Home</NavLink>
+      </li>
+
+      {user && (
+        <li>
+          <NavLink href="/teachers">Teachers</NavLink>
+        </li>
+      )}
+
+      {user && (
+        <li>
+          <NavLink href="/add-tutor">Add a tutor</NavLink>
+        </li>
+      )}
+
+      <li>
+        <NavLink href="/my-bookings">Bookings</NavLink>
+      </li>
+
+      {user && (
+        <li>
+          <NavLink href="/profile">Profile</NavLink>
+        </li>
+      )}
+      {!user && (
+        <li>
+          <NavLink href="/">About</NavLink>
+        </li>
+      )}
+    </>
+  );
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-xl">

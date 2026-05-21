@@ -1,6 +1,10 @@
-export const getAllTutors = async () => {
+export const getAllTutors = async (token) => {
   try {
-    const res = await fetch(`${process.env.LOCALHOST_URL}/teachers/all`);
+    const res = await fetch(`${process.env.LOCALHOST_URL}/teachers/all`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!res.ok) {
       throw new Error("Failed to fetch tutors");
     }
@@ -12,9 +16,13 @@ export const getAllTutors = async () => {
     return [];
   }
 };
-export const getPopularTutors = async () => {
+export const getPopularTutors = async (token) => {
   try {
-    const res = await fetch(`${process.env.LOCALHOST_URL}/teachers/popular`);
+    const res = await fetch(`${process.env.LOCALHOST_URL}/teachers/popular`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!res.ok) {
       throw new Error("Failed to fetch tutors");
     }
@@ -28,9 +36,13 @@ export const getPopularTutors = async () => {
 };
 
 //get a single tutor by id
-export const getSingleTutor = async (id) => {
+export const getSingleTutor = async (id,token) => {
   try {
-    const res = await fetch(`http://localhost:8000/teachers/${id}`);
+    const res = await fetch(`http://localhost:8000/teachers/${id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (!res.ok) {
       throw new Error("Failed to fetch tutor");
     }

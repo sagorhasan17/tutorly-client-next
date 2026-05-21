@@ -1,8 +1,14 @@
+import { auth } from "@/lib/auth";
 import { getPopularTutors } from "@/lib/fetchData";
+import { headers } from "next/headers";
 import TutorCard from "../TutorCard";
 
 const PopularTutors = async () => {
-  const allTutorsRes = await getPopularTutors();
+  const {token} = await auth.api.getToken({
+      headers: await headers(),
+    });
+  
+  const allTutorsRes = await getPopularTutors(token);
 
   return (
     <section className="py-6">
@@ -24,7 +30,7 @@ const PopularTutors = async () => {
         </div>
 
         {/* Tutors Grid */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {allTutorsRes.map((tutor) => (
             <TutorCard key={tutor._id} tutor={tutor} />
           ))}

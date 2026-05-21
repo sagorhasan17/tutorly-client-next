@@ -116,6 +116,7 @@ const SignUpPage = () => {
             name="password"
             type="password"
             className="w-full"
+            pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
           >
             <Label className="mb-2 text-sm font-semibold text-slate-700">
               Password
@@ -126,7 +127,14 @@ const SignUpPage = () => {
               className="w-full rounded-2xl border border-slate-200 bg-white text-slate-700"
             />
 
-            <FieldError />
+            <FieldError>
+              Password must contain:
+              <ul className="ml-5 list-disc text-sm">
+                <li>At least one uppercase letter</li>
+                <li>At least one lowercase letter</li>
+                <li>Minimum 6 characters</li>
+              </ul>
+            </FieldError>
           </TextField>
 
           <Button

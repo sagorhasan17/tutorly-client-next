@@ -1,5 +1,7 @@
+import { auth } from "@/lib/auth";
 import { getSingleTutor } from "@/lib/fetchData";
 import { Button } from "@heroui/react";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -19,7 +21,12 @@ export const metadata = {
 };
 const TeacherDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const tutor = await getSingleTutor(id);
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const tutor = await getSingleTutor(id,token);
+  console.log(token);
+  
 
   return (
     <section className="min-h-screen bg-slate-50 py-6">

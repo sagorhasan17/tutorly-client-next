@@ -1,7 +1,8 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { Avatar, Button, Card } from "@heroui/react";
+import { Button, Card } from "@heroui/react";
+import Image from "next/image";
 import {
   FaBookOpen,
   FaEdit,
@@ -10,7 +11,6 @@ import {
   FaPhoneAlt,
   FaUserGraduate,
 } from "react-icons/fa";
-
 
 const ProfilePage = () => {
   const userInfo = authClient.useSession();
@@ -38,11 +38,15 @@ const ProfilePage = () => {
             {/* Left Side */}
             <Card className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-xl shadow-slate-100">
               <div className="flex flex-col items-center text-center">
-                <Avatar
-                  src={user?.image}
-                  className="h-32 w-32 border-4 border-emerald-100 shadow-lg"
-                  referrerPolicy="no-referrer"
-                />
+                <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-emerald-100 shadow-lg">
+                  <Image
+                    src={user?.image || "/default-avatar.png"}
+                    alt={user?.name || "User Avatar"}
+                    fill
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
 
                 <h2 className="mt-6 text-3xl font-black text-slate-900">
                   {user?.name || "Tutorly User"}

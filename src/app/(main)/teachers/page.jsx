@@ -1,5 +1,7 @@
 import TutorCard from "@/components/TutorCard";
+import { auth } from "@/lib/auth";
 import { getAllTutors } from "@/lib/fetchData";
+import { headers } from "next/headers";
 
 export const metadata = {
   title: "Tutors",
@@ -8,7 +10,10 @@ export const metadata = {
 };
 
 const TeachersPage = async () => {
-  const allTutorsRes = await getAllTutors();
+  const {token} = await auth.api.getToken({
+        headers: await headers(),
+      });
+  const allTutorsRes = await getAllTutors(token);
 
   return (
     <section className="min-h-screen bg-slate-50 py-10">
@@ -28,7 +33,7 @@ const TeachersPage = async () => {
           </div>
 
           {/* Grid */}
-          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {allTutorsRes.map((tutor) => (
               <TutorCard key={tutor._id} tutor={tutor} />
             ))}
