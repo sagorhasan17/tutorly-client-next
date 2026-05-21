@@ -45,6 +45,12 @@ const SignUpPage = () => {
       });
     }
   };
+  const handleGoogleLogin = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  };
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-4 py-10">
       {/* Background Blur */}
@@ -144,7 +150,10 @@ const SignUpPage = () => {
         </div>
 
         {/* Google Login */}
-        <Button className="h-13 w-full rounded-2xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 shadow-sm transition-all hover:bg-slate-50">
+        <Button
+          onClick={handleGoogleLogin}
+          className="h-13 w-full rounded-2xl border border-slate-200 bg-white text-sm font-semibold text-slate-700 shadow-sm transition-all hover:bg-slate-50"
+        >
           <GoogleSVG className="mr-2 h-5 w-5" />
           Continue with Google
         </Button>

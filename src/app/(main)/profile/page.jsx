@@ -41,6 +41,7 @@ const ProfilePage = () => {
                 <Avatar
                   src={user?.image}
                   className="h-32 w-32 border-4 border-emerald-100 shadow-lg"
+                  referrerPolicy="no-referrer"
                 />
 
                 <h2 className="mt-6 text-3xl font-black text-slate-900">

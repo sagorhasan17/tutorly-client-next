@@ -1,6 +1,6 @@
 export const getAllTutors = async () => {
   try {
-    const res = await fetch("http://localhost:8000/teachers/all");
+    const res = await fetch(`${process.env.LOCALHOST_URL}/teachers/all`);
     if (!res.ok) {
       throw new Error("Failed to fetch tutors");
     }
@@ -14,7 +14,7 @@ export const getAllTutors = async () => {
 };
 export const getPopularTutors = async () => {
   try {
-    const res = await fetch("http://localhost:8000/teachers/popular");
+    const res = await fetch(`${process.env.LOCALHOST_URL}/teachers/popular`);
     if (!res.ok) {
       throw new Error("Failed to fetch tutors");
     }
