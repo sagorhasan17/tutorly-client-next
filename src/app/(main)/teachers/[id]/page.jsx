@@ -1,3 +1,4 @@
+import UpdateModal from "@/components/UpdateModal";
 import { auth } from "@/lib/auth";
 import { getSingleTutor } from "@/lib/fetchData";
 import { Button } from "@heroui/react";
@@ -25,8 +26,11 @@ const TeacherDetailsPage = async ({ params }) => {
     headers: await headers(),
   });
   const tutor = await getSingleTutor(id,token);
-  console.log(token);
-  
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
+
 
   return (
     <section className="min-h-screen bg-slate-50 py-6">
@@ -66,9 +70,7 @@ const TeacherDetailsPage = async ({ params }) => {
                 </div>
 
                 <div className="mt-10 flex justify-between gap-4">
-                  <Button className="rounded-2xl bg-emerald-500 text-sm font-semibold text-white hover:bg-emerald-600">
-                    Book Session
-                  </Button>
+                  <UpdateModal tutor={tutor} user={user}/>
                   <Link href="/teachers">
                     <Button
                       variant="outline"

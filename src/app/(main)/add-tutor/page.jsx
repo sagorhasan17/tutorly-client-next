@@ -56,8 +56,6 @@ const AddTutorPage = () => {
       return;
     } else {
       toast.success("Tutor added successfully!", { autoClose: 3000 });
-      console.log("Tutor added successfully");
-      console.log(tutorData);
       setLoading(false);
     }
   };
