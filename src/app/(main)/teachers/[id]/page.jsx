@@ -22,15 +22,14 @@ export const metadata = {
 };
 const TeacherDetailsPage = async ({ params }) => {
   const { id } = await params;
-  const {token} = await auth.api.getToken({
-    headers: await headers(),
-  });
-  const tutor = await getSingleTutor(id,token);
+  // const {token} = await auth.api.getToken({
+  //   headers: await headers(),
+  // });
+  const tutor = await getSingleTutor(id);
   const session = await auth.api.getSession({
     headers: await headers(),
   });
   const user = session?.user;
-
 
   return (
     <section className="min-h-screen bg-slate-50 py-6">
@@ -41,8 +40,8 @@ const TeacherDetailsPage = async ({ params }) => {
             <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-lg shadow-slate-100">
               <div className="relative aspect-4/5 w-full overflow-hidden">
                 <Image
-                  src={tutor.photo}
-                  alt={tutor.tutorName}
+                  src={tutor?.photo}
+                  alt={tutor?.tutorName}
                   fill
                   priority
                   className="object-cover transition duration-500 hover:scale-105"
@@ -55,7 +54,7 @@ const TeacherDetailsPage = async ({ params }) => {
                     <p className="text-sm text-slate-500">Hourly Fee</p>
 
                     <h3 className="mt-1 text-3xl font-black text-emerald-600">
-                      ৳{tutor.hourlyFee}
+                      ৳{tutor?.hourlyFee}
                       <span className="text-base font-medium text-slate-500">
                         /hr
                       </span>
@@ -65,7 +64,7 @@ const TeacherDetailsPage = async ({ params }) => {
                   <div className="flex items-center gap-2 rounded-2xl bg-yellow-50 px-4 py-3 text-yellow-500">
                     <FaStar />
 
-                    <span className="font-bold">{tutor.rating}</span>
+                    <span className="font-bold">{tutor?.rating}</span>
                   </div>
                 </div>
 
@@ -87,25 +86,25 @@ const TeacherDetailsPage = async ({ params }) => {
           {/* Details */}
           <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-lg shadow-slate-100 lg:col-span-2 lg:p-8">
             <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-semibold text-emerald-600">
-              {tutor.subject}
+              {tutor?.subject}
             </span>
 
             <h1 className="mt-5 text-4xl font-black tracking-tight text-slate-900">
-              {tutor.tutorName}
+              {tutor?.tutorName}
             </h1>
 
             <div className="mt-4 flex flex-wrap items-center gap-5 text-sm text-slate-500">
               <div className="flex items-center gap-2">
                 <FaGraduationCap className="text-emerald-500" />
 
-                <span>{tutor.institution}</span>
+                <span>{tutor?.institution}</span>
               </div>
 
               <div className="flex items-center gap-2">
                 <FaMapMarkerAlt className="text-emerald-500" />
 
                 <span>
-                  {tutor.area}, {tutor.city}
+                  {tutor?.area}, {tutor?.city}
                 </span>
               </div>
             </div>
@@ -122,7 +121,7 @@ const TeacherDetailsPage = async ({ params }) => {
                     <p className="text-xs text-slate-500">Experience</p>
 
                     <h4 className="font-bold text-slate-900">
-                      {tutor.experience}
+                      {tutor?.experience}
                     </h4>
                   </div>
                 </div>
@@ -138,7 +137,7 @@ const TeacherDetailsPage = async ({ params }) => {
                     <p className="text-xs text-slate-500">Subject</p>
 
                     <h4 className="font-bold text-slate-900">
-                      {tutor.subject}
+                      {tutor?.subject}
                     </h4>
                   </div>
                 </div>
@@ -154,7 +153,7 @@ const TeacherDetailsPage = async ({ params }) => {
                     <p className="text-xs text-slate-500">Teaching Mode</p>
 
                     <h4 className="font-bold text-slate-900">
-                      {tutor.teachingMode}
+                      {tutor?.teachingMode}
                     </h4>
                   </div>
                 </div>
@@ -170,7 +169,7 @@ const TeacherDetailsPage = async ({ params }) => {
                     <p className="text-xs text-slate-500">Available Slots</p>
 
                     <h4 className="font-bold text-slate-900">
-                      {tutor.totalSlots}
+                      {tutor?.totalSlots}
                     </h4>
                   </div>
                 </div>
@@ -184,7 +183,7 @@ const TeacherDetailsPage = async ({ params }) => {
               </h3>
 
               <div className="mt-5 flex flex-wrap gap-3">
-                {tutor.availableDays?.map((day, index) => (
+                {tutor?.availableDays?.map((day, index) => (
                   <span
                     key={index}
                     className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm"
@@ -196,13 +195,13 @@ const TeacherDetailsPage = async ({ params }) => {
 
               <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-slate-600">
                 <span className="rounded-full bg-emerald-100 px-4 py-2 font-medium text-emerald-600">
-                  {tutor.startTime}
+                  {tutor?.startTime}
                 </span>
 
                 <span>to</span>
 
                 <span className="rounded-full bg-emerald-100 px-4 py-2 font-medium text-emerald-600">
-                  {tutor.endTime}
+                  {tutor?.endTime}
                 </span>
               </div>
             </div>
@@ -211,7 +210,7 @@ const TeacherDetailsPage = async ({ params }) => {
             <div className="mt-10">
               <h3 className="text-2xl font-bold text-slate-900">About Tutor</h3>
 
-              <p className="mt-5 leading-8 text-slate-500">{tutor.bio}</p>
+              <p className="mt-5 leading-8 text-slate-500">{tutor?.bio}</p>
             </div>
           </div>
         </div>

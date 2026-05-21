@@ -24,11 +24,11 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     },
   },
-  session: {
-    cookieCache: true,
-    strategy: "jwt",
-    maxAge: 7 * 24 * 60 * 60,
-  },
+  // session: {
+  //   cookieCache: true,
+  //   strategy: "jwt",
+  //   maxAge: 10 * 24 * 60 * 60,
+  // },
 
-  plugins: [jwt()],
+  // plugins: [jwt()],
 });

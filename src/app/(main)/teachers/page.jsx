@@ -1,7 +1,5 @@
 import TutorCard from "@/components/TutorCard";
-import { auth } from "@/lib/auth";
 import { getAllTutors } from "@/lib/fetchData";
-import { headers } from "next/headers";
 
 export const metadata = {
   title: "Tutors",
@@ -10,10 +8,10 @@ export const metadata = {
 };
 
 const TeachersPage = async () => {
-  const {token} = await auth.api.getToken({
-        headers: await headers(),
-      });
-  const allTutorsRes = await getAllTutors(token);
+  // const {token} = await auth.api.getToken({
+  //       headers: await headers(),
+  //     });
+  const allTutorsRes = await getAllTutors();
 
   return (
     <section className="min-h-screen bg-slate-50 py-10">

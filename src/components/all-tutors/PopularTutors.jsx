@@ -1,14 +1,12 @@
-import { auth } from "@/lib/auth";
 import { getPopularTutors } from "@/lib/fetchData";
-import { headers } from "next/headers";
 import TutorCard from "../TutorCard";
 
 const PopularTutors = async () => {
-  const {token} = await auth.api.getToken({
-      headers: await headers(),
-    });
+  // const {token} = await auth.api.getToken({
+  //     headers: await headers(),
+  //   });
   
-  const allTutorsRes = await getPopularTutors(token);
+  const allTutorsRes = await getPopularTutors();
 
   return (
     <section className="py-6">

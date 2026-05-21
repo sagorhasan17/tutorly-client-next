@@ -24,28 +24,27 @@ const Navbar = () => {
       <li>
         <NavLink href="/">Home</NavLink>
       </li>
-
-      {user && (
         <li>
           <NavLink href="/teachers">Teachers</NavLink>
         </li>
-      )}
-
       {user && (
+        <>
         <li>
           <NavLink href="/add-tutor">Add a tutor</NavLink>
         </li>
-      )}
-
       <li>
-        <NavLink href="/my-bookings">Bookings</NavLink>
+        <NavLink href="/my-tutors">My Tutors</NavLink>
       </li>
-
-      {user && (
+      <li>
+        <NavLink href="/my-bookings">My Bookings Sessions</NavLink>
+      </li>
         <li>
           <NavLink href="/profile">Profile</NavLink>
         </li>
+        </>
       )}
+
+
       {!user && (
         <li>
           <NavLink href="/">About</NavLink>
