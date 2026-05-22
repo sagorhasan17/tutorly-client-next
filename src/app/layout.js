@@ -1,4 +1,5 @@
 import ReactToastContainer from "@/components/ReactToastContainer";
+import NextThemeProvider from "@/providers/NextThemeProvider";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 
@@ -19,9 +20,13 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${outfit.className} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <NextThemeProvider>
+          {children}
         <ReactToastContainer />
+        </NextThemeProvider>
       </body>
     </html>
   );

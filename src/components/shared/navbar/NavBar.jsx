@@ -1,5 +1,6 @@
 "use client";
 
+import ThemeToggle from "@/components/themeSwiche/ThemeToggle";
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
@@ -78,6 +79,9 @@ const Navbar = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden items-center gap-3 lg:flex">
+          <div>
+            <ThemeToggle />
+          </div>
           {user ? (
             <div className="flex items-center gap-3">
               <Avatar className="size-14 border-2 border-emerald-500">

@@ -41,7 +41,7 @@ const AddTutorPage = () => {
     const formData = new FormData(e.currentTarget);
     const tutorData = Object.fromEntries(formData.entries());
 
-    const res = await fetch(`http://localhost:8000/teachers`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
