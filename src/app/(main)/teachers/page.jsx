@@ -1,3 +1,4 @@
+
 import TutorCard from "@/components/TutorCard";
 import { getAllTutors } from "@/lib/fetchData";
 
@@ -29,7 +30,7 @@ const TeachersPage = async () => {
               </p>
             </div>
           </div>
-
+          {/* <SearchAndFilter /> */}
           {/* Grid */}
           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {allTutorsRes.map((tutor) => (

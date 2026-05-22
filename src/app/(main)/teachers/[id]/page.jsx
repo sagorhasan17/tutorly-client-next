@@ -22,10 +22,10 @@ export const metadata = {
 };
 const TeacherDetailsPage = async ({ params }) => {
   const { id } = await params;
-  // const {token} = await auth.api.getToken({
-  //   headers: await headers(),
-  // });
-  const tutor = await getSingleTutor(id);
+  const {token} = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const tutor = await getSingleTutor(id, token);
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -183,14 +183,9 @@ const TeacherDetailsPage = async ({ params }) => {
               </h3>
 
               <div className="mt-5 flex flex-wrap gap-3">
-                {tutor?.availableDays?.map((day, index) => (
-                  <span
-                    key={index}
-                    className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm"
-                  >
-                    {day}
+                  <span className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm">
+                    {tutor?.availableDays}
                   </span>
-                ))}
               </div>
 
               <div className="mt-5 flex flex-wrap items-center gap-3 text-sm text-slate-600">

@@ -24,6 +24,13 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     },
   },
+  session:{
+    cookieCache: true,
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60
+  }
+  ,
+  plugins:[jwt()],
   // session: {
   //   cookieCache: true,
   //   strategy: "jwt",

@@ -17,6 +17,7 @@ const DeleteAlert = ({ booking, id }) => {
         return;
       }
       toast.success(data.message);
+      window.location.reload();
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");

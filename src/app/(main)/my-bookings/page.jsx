@@ -2,20 +2,18 @@ import DeleteAlert from "@/components/DeleteAlert";
 import { auth } from "@/lib/auth";
 import { getMyBookingSessions } from "@/lib/fetchData";
 import { headers } from "next/headers";
-import {
-  FaCalendarCheck,
-  FaCheckCircle
-} from "react-icons/fa";
+import { FaCalendarCheck, FaCheckCircle } from "react-icons/fa";
 import { MdOutlinePlaylistRemove } from "react-icons/md";
 
 const MyBookingPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
   const user = session?.user;
   const email = user?.email;
-  const myBooking = await getMyBookingSessions(email);
 
+  const myBooking = await getMyBookingSessions(email);
 
   return (
     <section className="min-h-screen bg-slate-50 py-10">
@@ -31,12 +29,14 @@ const MyBookingPage = async () => {
               <h1 className="text-4xl font-black tracking-tight text-slate-900">
                 My Bookings
               </h1>
+
               <p className="mt-1 text-slate-500">
                 Manage all your tutor booking sessions easily.
               </p>
             </div>
           </div>
         </div>
+
 
         {/* Table Card */}
         <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-100">
@@ -47,18 +47,23 @@ const MyBookingPage = async () => {
                   <th className="px-6 py-5 text-left text-sm font-bold text-slate-700">
                     Student Name
                   </th>
+
                   <th className="px-6 py-5 text-left text-sm font-bold text-slate-700">
                     Phone
                   </th>
+
                   <th className="px-6 py-5 text-left text-sm font-bold text-slate-700">
                     Tutor Name
                   </th>
+
                   <th className="px-6 py-5 text-left text-sm font-bold text-slate-700">
                     Email
                   </th>
+
                   <th className="px-6 py-5 text-left text-sm font-bold text-slate-700">
                     Status
                   </th>
+
                   <th className="px-6 py-5 text-center text-sm font-bold text-slate-700">
                     Cancel
                   </th>
@@ -107,13 +112,6 @@ const MyBookingPage = async () => {
                       </td>
 
                       <td className="px-6 py-5 text-center">
-                        {/* <Button
-                          size="sm"
-                          className="rounded-xl bg-red-500 px-4 text-white hover:bg-red-600"
-                        >
-                          <FaTimesCircle />
-                          Cancel
-                        </Button> */}
                         <DeleteAlert id={booking._id} booking={booking} />
                       </td>
                     </tr>

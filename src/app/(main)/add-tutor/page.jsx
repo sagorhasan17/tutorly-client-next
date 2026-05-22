@@ -1,6 +1,7 @@
 "use client";
 
 import GlobalLoading from "@/components/shared/GlobalLoading";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
@@ -12,6 +13,8 @@ const availableDays = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 const AddTutorPage = () => {
   const [loading, setLoading] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
+  const userInfo = authClient.useSession();
+  const user = userInfo.data?.user;
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -37,16 +40,23 @@ const AddTutorPage = () => {
     //   qualification: formData.get("qualification"),
     //   bio: formData.get("bio"),
     // };
-
     const formData = new FormData(e.currentTarget);
     const tutorData = Object.fromEntries(formData.entries());
+
+    const tutorDataWithSessionInfo = {
+      ...tutorData,
+      name: user?.name,
+      email: user?.email,
+      createdAt: new Date().toISOString(),
+      sessionStartDate: startDate.toISOString(),
+    };
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/add-tutor`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(tutorData),
+      body: JSON.stringify(tutorDataWithSessionInfo),
     });
     if (!res.ok) {
       toast.error("Failed to add tutor. Please try again.", {

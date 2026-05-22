@@ -44,13 +44,6 @@ const Navbar = () => {
         </li>
         </>
       )}
-
-
-      {!user && (
-        <li>
-          <NavLink href="/">About</NavLink>
-        </li>
-      )}
     </>
   );
 
