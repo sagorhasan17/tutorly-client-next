@@ -8,8 +8,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
 
-const availableDays = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
+const availableDays = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 const AddTutorPage = () => {
   const [loading, setLoading] = useState(false);
   const [startDate, setStartDate] = useState(new Date());

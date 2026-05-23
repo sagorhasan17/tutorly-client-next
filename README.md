@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Name: Tutorly
 
-## Getting Started
+## Overview
+**Tutorly** is a modern tutor booking platform designed for students and teachers in Bangladesh. The platform allows students to easily search tutors, filter by available schedule, book sessions, and connect with experienced mentors through a clean and user-friendly interface.
 
-First, run the development server:
+Tutorly focuses on creating a smooth learning experience with modern UI/UX, responsive design, and dynamic tutor management features.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Tutor Booking Platform**  
+  Students can browse tutors and book learning sessions easily.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Real-time Tutor Search**  
+  Search tutors instantly by tutor name.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Filter by Available Time**  
+  Find tutors based on available start and end time.
 
-## Learn More
+- **Tutor Management System**  
+  Tutors can add, update, and manage their teaching profiles.
 
-To learn more about Next.js, take a look at the following resources:
+- **Authentication & Protected Routes**  
+  Secure login system with protected dashboard routes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Dynamic Tutor Details Page**  
+  View complete tutor information including schedule, fee, experience, and teaching mode.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Responsive Design**  
+  Fully optimized for mobile, tablet, and desktop devices.
 
-## Deploy on Vercel
+- **Modern UI/UX**  
+  Clean layout with modern cards, gradients, glass effects, and responsive sections.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Technologies Used
+
+- **Next.js 15** — Full-stack React framework
+- **React.js** — Frontend library
+- **Tailwind CSS** — Styling and responsive design
+- **HeroUI** — Modern React UI component library
+- **MongoDB** — NoSQL database
+- **Express.js** — Backend framework
+- **Node.js** — Server runtime
+- **Better Auth** — Authentication management
+- **JWT** — Secure route protection
+- **React Datepicker** — Date selection functionality
+- **React Icons** — Icon library for UI elements
+- **React Toastify** — Toast notifications for user feedback
+- **Vercel** — Frontend deployment platform
+
+---
+
+## Main Functionalities
+
+- Tutor Search & Filter
+- Add Tutor
+- Update Tutor
+- Delete Tutor
+- Book Tutor Session
+- Manage My Tutors
+- Manage My Bookings
+- Authentication System
+- Protected Routes
+- Dynamic Routing
+
+---
+
+## Project Goal
+
+The goal of **Tutorly** is to create a modern and easy-to-use tutor booking platform where students can quickly find qualified tutors and tutors can efficiently manage their teaching services.
+
+The platform aims to improve the online learning experience with simplicity, speed, and responsive design.
+
+---
+
+## Author
+**Tutorly by CodeAloy**

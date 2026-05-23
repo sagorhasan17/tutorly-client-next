@@ -11,16 +11,16 @@ const ThemeToggle = () => {
       {({isSelected}) => (
         <>
           <Switch.Control
-            className={`h-7.75 w-12.75 bg-black ${isSelected ? "bg-white text-cyan-500]" : ""}`} 
+            className={`h-7.75 w-12.75 shadow-lg rounded-full border bg-white ${isSelected ? "bg-black text-cyan-500]" : ""}`} 
           >
             <Switch.Thumb
               className={`size-6.75 bg-black shadow-sm ${isSelected ? "ms-5.5 shadow-lg" : ""}`}
             >
               <Switch.Icon>
                 {isSelected ? (
-                  <FaSun className="size-4 text-cyan-600" />
+                  <FaSun className="size-4 text-white" />
                 ) : (
-                  <FaMoon className="size-4 text-blue-600" />
+                  <FaMoon className="size-4 text-white" />
                 )}
               </Switch.Icon>
             </Switch.Thumb>
